@@ -7,14 +7,17 @@
      * define("DOMAIN", "example.com")
      */
     define("DOMAIN", "example.com");
+    define("WEBSITE_NAME", "My Website");
+    define("DESCRIPTION", "My Website Description");
+    define("THEME_COLOR", "#000000");
     /**
      * HTTPS must be true or false
      */
-    define("HTTPS", true);
+    define("HTTPS", false);
     /**
      * APP_DEBUG must be true or false
      */
-    define("APP_DEBUG", false);
+    define("APP_DEBUG", true);
     /**
      * APP_STATUS must be "development" or "production"
      * It is recommended to use "development" during development, and "production" when published
@@ -45,11 +48,15 @@
      * Discord API
      * Use Discord within your app! Currently limited to logging in through OAuth2 and fetching users
      */
-    define("USE_DISCORD", true);
+    define("USE_DISCORD", false);
     define("OAUTH2_CLIENT_ID", "1234567890");
     define("OAUTH2_CLIENT_SECRET", "Th15_15_n0t_4_r3al_k3y");
     define("OAUTH2_REDIRECT_URI", "");
     define("OAUTH2_SCOPES", "identify guilds");
+    /**
+     * Additionally, you may use your bot to use the API differently
+     */
+    define("BOT_TOKEN", "");
     /**
      * After login or logout, redirect them here
      */
@@ -78,7 +85,7 @@
     /**
      * Custom CSS, JS or fonts
      */
-    define("USE_CSS", true);
-    define("USE_JS", true);
-    define("USE_FONTS", true);
+    define("USE_CSS", false);
+    define("USE_JS", false);
+    define("USE_FONTS", false);
 ?>

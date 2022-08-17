@@ -1,42 +1,55 @@
 <?php
-    require './app/main/Base.php';
-    require './app/main/Utils.php';
-
     class API {
-        public function __construct() {}
+        public static function Get(string $url) {
+            Debug::BackEnd("[API::Get] GET Request Pending");
+            $call = self::CallAPI("GET", $url);
 
-        public function get(string $url) {
-            $call = self::callAPI("GET", $url);
+            Debug::BackEnd("[API::Get] Returning Array");
             return json_decode($call, true);
         }
 
-        public function post(string $url, array $data) {
+        public static function Post(string $url, array $data) {
+            Debug::BackEnd("[API::Post] Encoding Data");
             $data = json_encode($data);
 
-            $call = self::callAPI("POST", $url, $data);
+            Debug::BackEnd("[API::Post] POST Request Pending");
+            $call = self::CallAPI("POST", $url, $data);
+
+            Debug::BackEnd("[API::Post] Returning Array");
             return json_decode($call, true);
         }
 
-        public function put(string $url, array $data) {
+        public static function Put(string $url, array $data) {
+            Debug::BackEnd("[API::Put] Encoding Data");
             $data = json_encode($data);
 
-            $call = callAPI("PUT", $url, $data);
+            Debug::BackEnd("[API::Put] PUT Request Pending");
+            $call = self::CallAPI("PUT", $url, $data);
+
+            Debug::BackEnd("[API::Put] Returning Array");
             return json_decode($call, true);
         }
 
-        public function patch(string $url, array $data) {
+        public static function Patch(string $url, array $data) {
+            Debug::BackEnd("[API::Patch] Encoding Data");
             $data = json_encode($data);
 
-            $call = self::callAPI("PATCH", $url, $data);
+            Debug::BackEnd("[API::Patch] PATCH Request Pending");
+            $call = self::CallAPI("PATCH", $url, $data);
+
+            Debug::BackEnd("[API::Patch] Returning Array");
             return json_decode($call, true);
         }
 
-        public function delete(string $url) {
-            $call = self::callAPI("DELETE", $url);
+        public static function Delete(string $url) {
+            Debug::BackEnd("[API::Delete] DELETE Request Pending");
+            $call = self::CallAPI("DELETE", $url);
+
+            Debug::BackEnd("[API::Delete] Returning Array");
             return json_decode($call, true);
         }
 
-        private static function callAPI($method, $url, $data=false) {
+        private static function CallAPI($method, $url, $data=false) {
             if(USE_API === true) {
                 $curl = curl_init();
                 switch($method) {
@@ -75,15 +88,15 @@
 
                 $result = curl_exec($curl);
                 if(!$result) {
-                    die("API Connection failed.");
+                    $message = "API Connection failed.";
+                    Debug::Error($message);
+                    die($message);
                 }
                 curl_close($curl);
                 return $result;
             } else {
-                $base = new Base();
-
-                $message = 'Config: USE_API set to false';
-                $base::debug($message);
+                $message = 'USE_API set to false';
+                Debug::Error($message);
                 die($message);
             }
         }

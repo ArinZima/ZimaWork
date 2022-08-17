@@ -1,10 +1,6 @@
 <?php
     class CustomPart {
         public function __construct($partname, $filename) {
-            $this->css = DOMAIN . "/theme/css";
-            $this->fonts = DOMAIN . "/theme/fonts";
-            $this->js = DOMAIN . "/theme/js";
-
             switch ($partname) {
                 case "Style":
                     return self::Style($filename);
@@ -16,37 +12,34 @@
         }
 
         private static function Style($filename) {
+            $domain = Base::ParseDomain();
             if(USE_CSS === true) {
-                echo '<link rel="stylesheet" href="'.$this->css.'/'.$filename.'.css">' . "\n";
+                echo '<link rel="stylesheet" href="'.$domain.'/theme/css/'.$filename.'.css">' . "\n";
             } else {
-                $base = new Base();
-    
-                $message = 'Config: USE_CSS must be true to use custom CSS';
-                $base::debug($message);
+                $message = 'USE_CSS must be true to use custom CSS';
+                Debug::Error($message);
                 die($message);
             }
         }
 
         private static function Font($filename) {
+            $domain = Base::ParseDomain();
             if(USE_FONTS === true) {
-                echo '<link rel="stylesheet" href="'.$this->fonts.'/'.$filename.'">' . "\n";
+                echo '<link rel="stylesheet" href="'.$domain.'/theme/fonts/'.$filename.'">' . "\n";
             } else {
-                $base = new Base();
-    
-                $message = 'Config: USE_FONTS must be true to use custom fonts';
-                $base::debug($message);
+                $message = 'USE_FONTS must be true to use custom fonts';
+                Debug::Error($message);
                 die($message);
             }
         }
 
         private static function Script($filename) {
+            $domain = Base::ParseDomain();
             if(USE_JS === true) {
-                echo '<script src="'.$this->fonts.'/'.$filename.'.js"></script>' . "\n";
+                echo '<script src="'.$domain.'/theme/js/'.$filename.'.js"></script>' . "\n";
             } else {
-                $base = new Base();
-    
-                $message = 'Config: USE_JS must be true to use custom scripts';
-                $base::debug($message);
+                $message = 'USE_JS must be true to use custom scripts';
+                Debug::Error($message);
                 die($message);
             }
         }

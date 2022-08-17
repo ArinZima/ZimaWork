@@ -1,27 +1,21 @@
 <?php
-    require './app/main/Base.php';
-
     class MySQL {
         private $dbh = null;
-        public function __construct() {
+        public static function Connect() {
             if(USE_MYSQL === true) {
+                Debug::BackEnd("[MySQL::Connect] Attempting connection...");
                 try {
                     $this->dbh = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME,DB_USER,DB_PASS);
                 } catch (PDOException $e) {
-                    die("Could not connect to database: " . $e->getMessage());
+                    $message = "Could not connect to database: " . $e->getMessage();
+                    Debug::BackEnd("[MySQL::Connect] Connection failed. See error log for more info.");
+                    Debug::Error($message);
+                    die($message);
                 }
             } else {
-                $base = new Base();
-
-                $message = 'Config: USE_MYSQL set to false';
-                $base::debug($message);
+                $message = 'USE_MYSQL set to false';
+                Debug::Error($message);
                 die($message);
             }
-        }
-
-        public function query(string $sql) {
-            $query = $this->dbh->prepare($sql);
-            $query->execute();
-            return $query;
         }
     }

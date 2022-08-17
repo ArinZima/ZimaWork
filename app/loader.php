@@ -20,6 +20,13 @@ define("APP_ROOTPATH", __DIR__);
 // Require config.php
 require APP_ROOTPATH.'/config.php';
 
+// Require Base
+require './app/main/Base.php';
+
+// Access logging
+require './app/main/Debug.php';
+Debug::Access();
+
 // Start output buffering so we don't echo immediately
 ob_start();
 
