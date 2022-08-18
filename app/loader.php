@@ -39,6 +39,7 @@ $classmap = [
     'CustomPart' => 'parts/CustomPart.php',
     'Part' => 'parts/Part.php',
 
+    'Bot' => 'discord/Bot.php',
     'Discord' => 'discord/Discord.php',
     'OAuth2' => 'discord/OAuth2.php',
     'User' => 'discord/User.php'
