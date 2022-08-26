@@ -31,19 +31,32 @@ Debug::Access();
 ob_start();
 
 // Register all classes for the application
-$classmap = [
-    'API' => 'data/API.php',
+
+$classmap = array(
     'Bitwise' => 'data/Bitwise.php',
-    'MySQL' => 'data/MySQL.php',
 
     'CustomPart' => 'parts/CustomPart.php',
-    'Part' => 'parts/Part.php',
+    'Part' => 'parts/Part.php'
+);
+if(USE_MYSQL === true) {
+    array_push($classmap, ['MySQL' => 'data/MySQL.php']);
+}
+if(USE_API === true) {
+    array_push($classmap, ['API' => 'data/API.php']);
+}
+if(USE_DISCORD === true) {
+    $classmap['Bot'] = 'discord/Bot.php';
+    $classmap['Discord'] = 'discord/Discord.php';
+    $classmap['User'] = 'discord/User.php';
+}
+/* if(USE_TWITCH === true) {
+    array_push($classmap, ['Twitch' => 'twitch/Twitch.php']);
+} 
+if(USE_TWITTER === true) {
+    array_push($classmap, ['Twitter' => 'twitter/Twitter.php']);
+} */
 
-    'Bot' => 'discord/Bot.php',
-    'Discord' => 'discord/Discord.php',
-    'OAuth2' => 'discord/OAuth2.php',
-    'User' => 'discord/User.php'
-];
+// var_dump($classmap);
 
 class ClassNotFoundException extends Exception {};
 

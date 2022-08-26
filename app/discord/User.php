@@ -3,7 +3,7 @@
         public static function Fetch() {
             if(USE_DISCORD === true) {
                 Debug::BackEnd("[User::Fetch] Fetching user");
-                $user = Discord::Request(Discord::$user);
+                $user = Discord::Request(Discord::USER);
     
                 Debug::BackEnd("[User::Fetch] Returning user");
                 return $user;

@@ -46,24 +46,44 @@
 
     /**
      * Discord API
-     * Use Discord within your app! Currently limited to logging in through OAuth2 and fetching users
+     * Use Discord within your app! Currently limited to authentication and fetching users/guilds
      */
     define("USE_DISCORD", false);
-    define("OAUTH2_CLIENT_ID", "1234567890");
-    define("OAUTH2_CLIENT_SECRET", "Th15_15_n0t_4_r3al_k3y");
-    define("OAUTH2_REDIRECT_URI", "");
-    define("OAUTH2_SCOPES", "identify guilds");
+    define("DISCORD_CLIENT_ID", "1234567890");
+    define("DISCORD_CLIENT_SECRET", "Th15_15_n0t_4_r3al_k3y");
+    define("DISCORD_REDIRECT_URI", "");
+    define("DISCORD_SCOPES", "identify guilds");
     /**
      * Additionally, you may use your bot to use the API differently
      */
-    define("BOT_TOKEN", "");
+    define("DISCORD_BOT_TOKEN", "");
     /**
      * After login or logout, redirect them here
      */
-    define("USER_DIRECT_AFTER_LOGIN", "");
-    define("USER_DIRECT_AFTER_LOGOUT", "");
+    define("DISCORD_DIRECT_AFTER_LOGIN", "");
+    define("DISCORD_DIRECT_AFTER_LOGOUT", "");
 
-    /** 
+    /**
+     * Twitch API
+     * Use Twitch within your app! Allow users to authenticate and use Twitch's API to your disposal!
+     */
+    define("USE_TWITCH", false);
+    define("TTV_CLIENT_ID", "");
+    define("TTV_REDIRECT_URI", "");
+    define("TTV_SCOPES", "user:read:email");
+    /**
+     * After login or logout, redirect them here
+     */
+    define("TTV_DIRECT_AFTER_LOGIN", "");
+    define("TTV_DIRECT_AFTER_LOGOUT", "");
+
+    /**
+     * Twitter API
+     * Use Twitter within your app! Allow users to authenticate and use Twitter's API to your disposal!
+     */
+
+
+    /**
      * Plugins
      * Enable or disable the use of plugins easily
      */
@@ -73,10 +93,9 @@
     /**
      * In order to use jQuery UI and jQuery Mobile, you must enable jQuery as well
      */
-    define("USE_JQUERY", false);
     define("USE_JQUERY_UI", false);
     define("USE_JQUERY_MOBILE", false);
-    define("USE_QUNIT", false);
+    define("USE_QUNIT", false); 
     /**
      * Should plugins use minified files, where available?
      */

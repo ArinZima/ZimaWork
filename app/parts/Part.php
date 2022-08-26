@@ -86,6 +86,16 @@
 
         public static function Footer() {
             $domain = Base::ParseDomain();
+
+            /**
+             * jQuery
+             */
+            if(MINIFIED === true) {
+                echo '<script src="'.$domain.'/theme/external/jquery/jquery-3.6.0.min.js"></script>' . "\n";
+            } else {
+                echo '<script src="'.$domain.'/theme/external/jquery/jquery-3.6.0.js"></script>' . "\n";
+            }
+
             if(USE_BOOTSTRAP === true) {
                 if(MINIFIED === true) {
                     echo '<script src="'.$domain.'/theme/external/bootstrap/js/bootstrap.min.js"></script>' . "\n";
@@ -99,14 +109,6 @@
                     echo '<script src="'.$domain.'/theme/external/fontawesome/css/all.min.js"></script>' . "\n";
                 } else {
                     echo '<script src="'.$domain.'/theme/external/fontawesome/js/all.js"></script>' . "\n";
-                }
-            }
-
-            if(USE_JQUERY === true) {
-                if(MINIFIED === true) {
-                    echo '<script src="'.$domain.'/theme/external/jquery/jquery-3.6.0.min.js"></script>' . "\n";
-                } else {
-                    echo '<script src="'.$domain.'/theme/external/jquery/jquery-3.6.0.js"></script>' . "\n";
                 }
             }
 
