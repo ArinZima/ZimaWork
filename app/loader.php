@@ -31,18 +31,16 @@ Debug::Access();
 ob_start();
 
 // Register all classes for the application
+$classmap = array();
+$classmap['Bitwise'] = 'data/Bitwise.php';
+$classmap['CustomPart'] = 'parts/CustomPart.php';
+$classmap['Part'] = 'parts/Part.php';
 
-$classmap = array(
-    'Bitwise' => 'data/Bitwise.php',
-
-    'CustomPart' => 'parts/CustomPart.php',
-    'Part' => 'parts/Part.php'
-);
 if(USE_MYSQL === true) {
-    array_push($classmap, ['MySQL' => 'data/MySQL.php']);
+    $classmap['MySQL'] = 'data/MySQL.php';
 }
 if(USE_API === true) {
-    array_push($classmap, ['API' => 'data/API.php']);
+    $classmap['API'] = 'data/API.php';
 }
 if(USE_DISCORD === true) {
     $classmap['Bot'] = 'discord/Bot.php';
@@ -50,10 +48,10 @@ if(USE_DISCORD === true) {
     $classmap['User'] = 'discord/User.php';
 }
 /* if(USE_TWITCH === true) {
-    array_push($classmap, ['Twitch' => 'twitch/Twitch.php']);
+    $classmap['Twitch'] = 'twitch/Twitch.php';
 } 
 if(USE_TWITTER === true) {
-    array_push($classmap, ['Twitter' => 'twitter/Twitter.php']);
+    $classmap['Twitter'] = 'twitter/Twitter.php';
 } */
 
 // var_dump($classmap);

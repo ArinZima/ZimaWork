@@ -1,17 +1,6 @@
 <?php
     class CustomPart {
-        public function __construct($partname, $filename) {
-            switch ($partname) {
-                case "Style":
-                    return self::Style($filename);
-                case "Font":
-                    return self::Font($filename);
-                case "Script":
-                    return self::Script($filename);
-            }
-        }
-
-        private static function Style($filename) {
+        public static function Style($filename) {
             $domain = Base::ParseDomain();
             if(USE_CSS === true) {
                 echo '<link rel="stylesheet" href="'.$domain.'/theme/css/'.$filename.'.css">' . "\n";
@@ -22,7 +11,7 @@
             }
         }
 
-        private static function Font($filename) {
+        public static function Font($filename) {
             $domain = Base::ParseDomain();
             if(USE_FONTS === true) {
                 echo '<link rel="stylesheet" href="'.$domain.'/theme/fonts/'.$filename.'">' . "\n";
@@ -33,7 +22,7 @@
             }
         }
 
-        private static function Script($filename) {
+        public static function Script($filename) {
             $domain = Base::ParseDomain();
             if(USE_JS === true) {
                 echo '<script src="'.$domain.'/theme/js/'.$filename.'.js"></script>' . "\n";

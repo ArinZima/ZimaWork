@@ -81,7 +81,10 @@
      * Twitter API
      * Use Twitter within your app! Allow users to authenticate and use Twitter's API to your disposal!
      */
-
+    define("USE_TWITTER", false);
+    define("TWITTER_CLIENT_ID", "");
+    define("TWITTER_REDIRECT_URI", "");
+    define("TWITTER_SCOPES", "");
 
     /**
      * Plugins
