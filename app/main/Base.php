@@ -1,25 +1,13 @@
 <?php
     class Base {
         public static function Get($key, $default=NULL) {
-            if(USE_DISCORD === true) {
-                Debug::BackEnd("[Base::Get] Checking if array key exists");
-                return array_key_exists($key, $_GET) ? $_GET[$key] : $default;
-            } else {
-                $message = 'USE_DISCORD set to false';
-                Debug::Error($message);
-                die($message);
-            }
+            Debug::BackEnd("[Base::Get] Checking if array key exists");
+            return array_key_exists($key, $_GET) ? $_GET[$key] : $default;
         }
 
         public static function Session($key, $default=NULL) {
-            if(USE_DISCORD === true) {
-                Debug::BackEnd("[Base::Session] Checking if array key exists");
-                return array_key_exists($key, $_SESSION) ? $_SESSION[$key] : $default;
-            } else {
-                $message = 'USE_DISCORD set to false';
-                Debug::Error($message);
-                die($message);
-            }
+            Debug::BackEnd("[Base::Session] Checking if array key exists");
+            return array_key_exists($key, $_SESSION) ? $_SESSION[$key] : $default;
         }
 
         public static function Redirect($url) {

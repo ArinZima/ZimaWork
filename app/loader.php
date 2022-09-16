@@ -47,10 +47,10 @@ if(USE_DISCORD === true) {
     $classmap['Discord'] = 'discord/Discord.php';
     $classmap['User'] = 'discord/User.php';
 }
-/* if(USE_TWITCH === true) {
+if(USE_TWITCH === true) {
     $classmap['Twitch'] = 'twitch/Twitch.php';
 } 
-if(USE_TWITTER === true) {
+/* if(USE_TWITTER === true) {
     $classmap['Twitter'] = 'twitter/Twitter.php';
 } */
 

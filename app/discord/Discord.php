@@ -7,14 +7,14 @@
         public const REVOKE = 'https://discord.com/api/oauth2/token/revoke';
         public const TOKEN = 'https://discord.com/api/oauth2/token';
 
-        public static function Request($url, $post=FALSE, $headers=array()) {
+        public static function Request($url, $post=null, $headers=array()) {
             if(USE_DISCORD === true) {
                 Debug::BackEnd("[Discord::Request] Initiating cURL configuration");
                 $ch = curl_init($url);
                 curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
-                if($post)
+                if(!empty($post))
                   curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
               
                 $headers[] = 'Accept: application/json';
@@ -35,14 +35,14 @@
             }
         }
 
-        public static function RequestBot($url, $post=FALSE, $headers=array()) {
+        public static function RequestBot($url, $post=null, $headers=array()) {
             if(USE_DISCORD === true) {
                 Debug::BackEnd("[Discord::RequestBot] Initiating cURL configuration");
                 $ch = curl_init($url);
                 curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
-                if($post)
+                if(!empty($post))
                   curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
               
                 $headers[] = 'Accept: application/json';
