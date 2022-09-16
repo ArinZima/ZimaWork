@@ -49,10 +49,7 @@ if(USE_DISCORD === true) {
 }
 if(USE_TWITCH === true) {
     $classmap['Twitch'] = 'twitch/Twitch.php';
-} 
-/* if(USE_TWITTER === true) {
-    $classmap['Twitter'] = 'twitter/Twitter.php';
-} */
+}
 
 // var_dump($classmap);
 
