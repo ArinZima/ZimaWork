@@ -10,11 +10,12 @@
      * Class OAuth2
      * 
      * @author Arin Zima <arin@arinzima.com>
-     * 
-     * !! THIS CLASS HAS NOT BEEN TESTED YET. PROCEED WITH EXTREME CAUTION.
      */
     class OAuth2 extends Discord implements OAuth2Interface
     {
+        /**
+         * Check if config value is set to "true"
+         */
         PUBLIC FUNCTION __construct()
         {
             if(DISCORD === false)
@@ -23,6 +24,9 @@
             }
         }
 
+        /**
+         * If not logged in, redirect to authorize
+         */
         public function request_login(string $state)
         {
             $discord = new Discord();
@@ -42,6 +46,9 @@
             die();
         }
 
+        /**
+         * Send a request to receive an access token
+         */
         public function login()
         {
             $discord = new Discord();
@@ -67,6 +74,14 @@
                     'expires' => $time->add_days($time->current(), 7)
                 ]);
 
+                $cookie->set('discord_refresh_token', $token['refresh_token'], [
+                    'expires' => $time->add_days($time->current(), 7)
+                ]);
+
+                $cookie->set('discord_expires', $time->add_seconds($time->current(), $token['expires_in']), [
+                    'expires' => $time->add_days($time->current(), 7)
+                ]);
+
                 $site->redirect(DISCORD_REDIRECT_LOGIN);
             }
             else
@@ -75,6 +90,62 @@
             }
         }
 
+        /**
+         * Check if saved access token is valid
+         */
+        public function is_valid()
+        {
+            $cookie = new Cookie();
+            $time = new Time();
+
+            $now = $time->current();
+            $expires = $cookie->fetch('discord_expires');
+            
+            if($now < $expires) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        /**
+         * If access token is invalid, refresh it
+         */
+        public function refresh()
+        {
+            $discord = new Discord();
+            $cookie = new Cookie();
+            $time = new Time();
+
+            $refresh = $cookie->fetch('discord_refresh_token');
+
+            $token = $discord->request(Discord::TOKEN, [
+                'client_id' => DISCORD_CLIENT_ID,
+                'client_secret' => DISCORD_CLIENT_SECRET,
+                'grant_type' => 'refresh_token',
+                'refresh_token' => $refresh
+            ], [
+                'Content-Type: application/x-www-form-urlencoded'
+            ]);
+
+            $cookie->set('discord_access_token', $token['access_token'], [
+                'expires' => $time->add_days($time->current(), 7)
+            ]);
+
+            $cookie->set('discord_refresh_token', $token['refresh_token'], [
+                'expires' => $time->add_days($time->current(), 7)
+            ]);
+
+            $cookie->set('discord_expires', $time->add_seconds($time->current(), $token['expires_in']), [
+                'expires' => $time->add_days($time->current(), 7)
+            ]);
+
+            return true;
+        }
+
+        /**
+         * Revoke a user's access token
+         */
         public function logout()
         {
             $site = new Site();
@@ -91,6 +162,9 @@
             $site->redirect(DISCORD_REDIRECT_LOGOUT);
         }
 
+        /**
+         * API request to revoking an access token
+         */
         private static function request_logout(array $data)
         {
             $discord = new Discord();

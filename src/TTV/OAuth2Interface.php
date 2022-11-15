@@ -1,16 +1,16 @@
 <?php
-    namespace Zima\Discord;
+    namespace Zima\TTV;
 
     interface OAuth2Interface
     {
         /**
+         * @param string    $state
+         * 
          * @return null
          */
         public function request_login(string $state);
 
         /**
-         * @param string    $state
-         * 
          * @return null
          */
         public function login();

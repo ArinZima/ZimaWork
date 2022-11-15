@@ -7,8 +7,6 @@
      * Class Discord
      * 
      * @author Arin Zima <arin@arinzima.com>
-     * 
-     * !! THIS CLASS HAS NOT BEEN TESTED YET. PROCEED WITH EXTREME CAUTION.
      */
     class Discord {
         public const NOT_ENABLED = "ConfigError: \"DISCORD\" is set to false."; 

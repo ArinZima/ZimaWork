@@ -38,14 +38,14 @@
      * Use Discord within your app!
      * Currently limited to authentication and fetching the authenticated user.
      */
-    define("DISCORD", false);
-    define("DISCORD_CLIENT_ID", "1234567890");
-    define("DISCORD_CLIENT_SECRET", "Th15_15_n0t_4_r3al_k3y");
-    define("DISCORD_REDIRECT_URI", "");
+    define("DISCORD", true);
+    define("DISCORD_CLIENT_ID", "999568403633291304");
+    define("DISCORD_CLIENT_SECRET", "iwKrBvX9-vST0H6wHWN0wVpD_XcSUM97");
+    define("DISCORD_REDIRECT_URI", "http://localhost/Steven/index.php");
     define("DISCORD_SCOPES", "identify");
 
-    define("DISCORD_REDIRECT_LOGIN", "");
-    define("DISCORD_REDIRECT_LOGOUT", "");
+    define("DISCORD_REDIRECT_LOGIN", "http://localhost/Steven/index.php");
+    define("DISCORD_REDIRECT_LOGOUT", "http://localhost/Steven/index.php");
 
     /**
      * Twitch API
