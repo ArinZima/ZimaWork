@@ -39,13 +39,13 @@
      * Currently limited to authentication and fetching the authenticated user.
      */
     define("DISCORD", true);
-    define("DISCORD_CLIENT_ID", "999568403633291304");
-    define("DISCORD_CLIENT_SECRET", "iwKrBvX9-vST0H6wHWN0wVpD_XcSUM97");
-    define("DISCORD_REDIRECT_URI", "http://localhost/Steven/index.php");
+    define("DISCORD_CLIENT_ID", "");
+    define("DISCORD_CLIENT_SECRET", "");
+    define("DISCORD_REDIRECT_URI", "");
     define("DISCORD_SCOPES", "identify");
 
-    define("DISCORD_REDIRECT_LOGIN", "http://localhost/Steven/index.php");
-    define("DISCORD_REDIRECT_LOGOUT", "http://localhost/Steven/index.php");
+    define("DISCORD_REDIRECT_LOGIN", "");
+    define("DISCORD_REDIRECT_LOGOUT", "");
 
     /**
      * Twitch API
